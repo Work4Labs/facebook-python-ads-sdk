@@ -635,10 +635,11 @@ class InsightsTestCase(AbstractCrudObjectTestCase):
         self.TEST_ACCOUNT.get_insights(fields=[
             objects.Insights.Field.clicks,
             objects.Insights.Field.impressions,
-            objects.Insights.Field.adgroup_id,
-            objects.Insights.Field.adgroup_name,
+            objects.Insights.Field.campaign_group_id,
+            objects.Insights.Field.campaign_group_name,
         ], params={
-            'level': objects.Insights.Level.adgroup,
+            'date_preset': objects.Insights.Preset.today,
+            'level': objects.Insights.Level.campaign_group,
         })
 
 
