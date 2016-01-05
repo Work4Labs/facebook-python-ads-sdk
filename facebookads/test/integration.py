@@ -303,7 +303,7 @@ class AbstractCrudObjectTestCase(AbstractObjectTestCase):
 
         test_image_one[objects.AdImage.Field.filename] = image_file
 
-        assert test_image_one.remote_create(api_version="v2.3") is not None
+        assert test_image_one.remote_create(api_version="v2.5") is not None
 
         test_image_two = objects.AdImage(
             parent_id=self.TEST_ACCOUNT.get_id_assured(),
@@ -312,7 +312,7 @@ class AbstractCrudObjectTestCase(AbstractObjectTestCase):
         test_image_two[objects.AdImage.Field.filename] = image_file
 
         try:
-            test_image_two.remote_create(api_version="v.2.3")
+            test_image_two.remote_create(api_version="v.2.5")
         except fbexceptions.FacebookBadObjectError as e:
             assert e is not None
 
