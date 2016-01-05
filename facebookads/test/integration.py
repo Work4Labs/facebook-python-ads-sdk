@@ -632,14 +632,18 @@ class AdImageTestCase(AbstractCrudObjectTestCase):
 
 class InsightsTestCase(AbstractCrudObjectTestCase):
     def test_can_read_without_job(self):
-        self.TEST_ACCOUNT.get_insights(fields=[
-            objects.Insights.Field.unique_clicks,
-            objects.Insights.Field.impressions,
-            objects.Insights.Field.ad_id,
-            objects.Insights.Field.ad_name,
-        ], params={
-            'level': objects.Insights.Level.ad,
-        })
+        self.TEST_ACCOUNT.get_insights(
+            fields=[
+                objects.Insights.Field.unique_clicks,
+                objects.Insights.Field.impressions,
+                objects.Insights.Field.campaign_id,
+                objects.Insights.Field.campaign_name,
+            ],
+            params={
+                'date_preset': objects.Insights.Preset.today,
+                'level': objects.Insights.Level.campaign,
+            }
+        )
 
 
 class ReachEstimateTestCase(AbstractCrudObjectTestCase):
