@@ -47,6 +47,7 @@ class AttachmentData(ValidatesFields, AbstractObject):
         link = 'link'
         name = 'name'
         picture = 'picture'
+        video_id = 'video_id'
 
 
 class LinkData(ValidatesFields, AbstractObject):
@@ -93,6 +94,7 @@ class TemplateData(ValidatesFields, AbstractObject):
         max_product_count = 'max_product_count'
         message = 'message'
         name = 'name'
+        picture = 'picture'
 
 
 class TextData(ValidatesFields, AbstractObject):
@@ -107,3 +109,10 @@ class VideoData(ValidatesFields, AbstractObject):
         image_url = 'image_url'
         title = 'title'
         video_id = 'video_id'
+
+
+class SlideshowSpec(ValidatesFields, AbstractObject):
+    class Field(object):
+        images_urls = 'images_urls'
+        duration_ms = 'duration_ms'
+        transition_ms = 'transition_ms'
