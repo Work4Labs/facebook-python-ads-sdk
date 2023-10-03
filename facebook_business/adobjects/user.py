@@ -44,6 +44,7 @@ class User(
         about = 'about'
         age_range = 'age_range'
         birthday = 'birthday'
+        community = 'community'
         cover = 'cover'
         currency = 'currency'
         education = 'education'
@@ -242,6 +243,7 @@ class User(
             'business_app': 'int',
             'page_id': 'string',
             'scope': 'list<Permission>',
+            'set_token_expires_in_60_days': 'bool',
         }
         enums = {
         }
@@ -304,7 +306,6 @@ class User(
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
-        from facebook_business.adobjects.page import Page
         param_types = {
             'about': 'string',
             'address': 'string',
@@ -331,9 +332,9 @@ class User(
             endpoint='/accounts',
             api=self._api,
             param_checker=TypeChecker(param_types, enums),
-            target_class=Page,
+            target_class=AbstractCrudObject,
             api_type='EDGE',
-            response_parser=ObjectParser(target_class=Page, api=self._api),
+            response_parser=ObjectParser(target_class=AbstractCrudObject, api=self._api),
         )
         request.add_params(params)
         request.add_fields(fields)
@@ -1656,6 +1657,7 @@ class User(
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
         param_types = {
+            'bot_message_payload_elements': 'string',
             'filtering': 'list<filtering_enum>',
             'href': 'Object',
             'label': 'string',
@@ -2228,6 +2230,7 @@ class User(
         'about': 'string',
         'age_range': 'AgeRange',
         'birthday': 'string',
+        'community': 'Group',
         'cover': 'UserCoverPhoto',
         'currency': 'Currency',
         'education': 'list<Object>',

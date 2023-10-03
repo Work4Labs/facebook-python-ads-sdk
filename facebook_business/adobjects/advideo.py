@@ -160,6 +160,7 @@ class AdVideo(
         ads_ai_generated = 'ADS_AI_GENERATED'
         ad_break_preview = 'AD_BREAK_PREVIEW'
         ad_derivative = 'AD_DERIVATIVE'
+        ad_library_watermark = 'AD_LIBRARY_WATERMARK'
         age_up = 'AGE_UP'
         album_multimedia_post = 'ALBUM_MULTIMEDIA_POST'
         aloha_call_video = 'ALOHA_CALL_VIDEO'
@@ -197,6 +198,7 @@ class AdVideo(
         event_cover_video = 'EVENT_COVER_VIDEO'
         event_tour = 'EVENT_TOUR'
         facecast_dvr = 'FACECAST_DVR'
+        fb_avatar_animated_satp = 'FB_AVATAR_ANIMATED_SATP'
         fb_collectible_video = 'FB_COLLECTIBLE_VIDEO'
         fb_shorts = 'FB_SHORTS'
         fb_shorts_content_remixable = 'FB_SHORTS_CONTENT_REMIXABLE'
@@ -241,6 +243,7 @@ class AdVideo(
         legacy_contained_post_broadcast = 'LEGACY_CONTAINED_POST_BROADCAST'
         live_audio_room_broadcast = 'LIVE_AUDIO_ROOM_BROADCAST'
         live_clip_preview = 'LIVE_CLIP_PREVIEW'
+        live_clip_workchat = 'LIVE_CLIP_WORKCHAT'
         live_creative_kit_video = 'LIVE_CREATIVE_KIT_VIDEO'
         live_photo = 'LIVE_PHOTO'
         look_now_deprecated = 'LOOK_NOW_DEPRECATED'
@@ -566,6 +569,67 @@ class AdVideo(
             node_id=self['id'],
             method='POST',
             endpoint='/captions',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=AdVideo,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=AdVideo, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
+    def get_collaborators(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        param_types = {
+        }
+        enums = {
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='GET',
+            endpoint='/collaborators',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=AbstractCrudObject,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=AbstractCrudObject, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
+    def create_collaborator(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        param_types = {
+            'target_id': 'string',
+        }
+        enums = {
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='POST',
+            endpoint='/collaborators',
             api=self._api,
             param_checker=TypeChecker(param_types, enums),
             target_class=AdVideo,

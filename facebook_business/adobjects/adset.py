@@ -58,6 +58,7 @@ class AdSet(
         billing_event = 'billing_event'
         budget_remaining = 'budget_remaining'
         campaign = 'campaign'
+        campaign_attribution = 'campaign_attribution'
         campaign_id = 'campaign_id'
         configured_status = 'configured_status'
         created_time = 'created_time'
@@ -66,6 +67,8 @@ class AdSet(
         daily_min_spend_target = 'daily_min_spend_target'
         daily_spend_cap = 'daily_spend_cap'
         destination_type = 'destination_type'
+        dsa_beneficiary = 'dsa_beneficiary'
+        dsa_payor = 'dsa_payor'
         effective_status = 'effective_status'
         end_time = 'end_time'
         existing_customer_budget_percentage = 'existing_customer_budget_percentage'
@@ -110,7 +113,6 @@ class AdSet(
         time_stop = 'time_stop'
         topline_id = 'topline_id'
         tune_for_category = 'tune_for_category'
-        upstream_events = 'upstream_events'
 
     class BidStrategy:
         cost_cap = 'COST_CAP'
@@ -167,6 +169,7 @@ class AdSet(
         quality_call = 'QUALITY_CALL'
         quality_lead = 'QUALITY_LEAD'
         reach = 'REACH'
+        subscribers = 'SUBSCRIBERS'
         thruplay = 'THRUPLAY'
         value = 'VALUE'
         visit_instagram_profile = 'VISIT_INSTAGRAM_PROFILE'
@@ -369,6 +372,8 @@ class AdSet(
             'daily_spend_cap': 'unsigned int',
             'date_format': 'string',
             'destination_type': 'destination_type_enum',
+            'dsa_beneficiary': 'string',
+            'dsa_payor': 'string',
             'end_time': 'datetime',
             'execution_options': 'list<execution_options_enum>',
             'existing_customer_budget_percentage': 'unsigned int',
@@ -393,7 +398,6 @@ class AdSet(
             'time_start': 'datetime',
             'time_stop': 'datetime',
             'tune_for_category': 'tune_for_category_enum',
-            'upstream_events': 'map',
         }
         enums = {
             'bid_strategy_enum': AdSet.BidStrategy.__dict__.values(),
@@ -978,6 +982,7 @@ class AdSet(
         'billing_event': 'BillingEvent',
         'budget_remaining': 'string',
         'campaign': 'Campaign',
+        'campaign_attribution': 'string',
         'campaign_id': 'string',
         'configured_status': 'ConfiguredStatus',
         'created_time': 'datetime',
@@ -986,6 +991,8 @@ class AdSet(
         'daily_min_spend_target': 'string',
         'daily_spend_cap': 'string',
         'destination_type': 'string',
+        'dsa_beneficiary': 'string',
+        'dsa_payor': 'string',
         'effective_status': 'EffectiveStatus',
         'end_time': 'datetime',
         'existing_customer_budget_percentage': 'unsigned int',
@@ -1015,7 +1022,7 @@ class AdSet(
         'start_time': 'datetime',
         'status': 'Status',
         'targeting': 'Targeting',
-        'targeting_optimization_types': 'map<string, int>',
+        'targeting_optimization_types': 'list<map<string, int>>',
         'time_based_ad_rotation_id_blocks': 'list<list<int>>',
         'time_based_ad_rotation_intervals': 'list<unsigned int>',
         'updated_time': 'datetime',
@@ -1030,7 +1037,6 @@ class AdSet(
         'time_stop': 'datetime',
         'topline_id': 'string',
         'tune_for_category': 'TuneForCategory',
-        'upstream_events': 'map',
     }
     @classmethod
     def _get_field_enum_info(cls):
