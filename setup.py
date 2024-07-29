@@ -29,9 +29,9 @@ readme_filename = os.path.join(this_dir, 'README.md')
 requirements_filename = os.path.join(this_dir, 'requirements.txt')
 
 PACKAGE_NAME = 'facebook_business'
-PACKAGE_VERSION = '17.0.4+work4'
+PACKAGE_VERSION = '20.0.0+work4'
 PACKAGE_AUTHOR = 'Facebook'
-PACKAGE_AUTHOR_EMAIL = ''
+PACKAGE_AUTHOR_EMAIL = 'shuotian@meta.com'
 PACKAGE_URL = 'https://github.com/facebook/facebook-python-business-sdk'
 PACKAGE_DOWNLOAD_URL = \
     'https://github.com/facebook/facebook-python-business-sdk/tarball/' + PACKAGE_VERSION

@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -65,6 +51,10 @@ class Comment(
         private_reply_conversation = 'private_reply_conversation'
         user_likes = 'user_likes'
 
+    class Order:
+        chronological = 'chronological'
+        reverse_chronological = 'reverse_chronological'
+
     class CommentPrivacyValue:
         declined_by_admin_assistant = 'DECLINED_BY_ADMIN_ASSISTANT'
         default_privacy = 'DEFAULT_PRIVACY'
@@ -85,10 +75,6 @@ class Comment(
     class LiveFilter:
         filter_low_quality = 'filter_low_quality'
         no_filter = 'no_filter'
-
-    class Order:
-        chronological = 'chronological'
-        reverse_chronological = 'reverse_chronological'
 
     def api_delete(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
@@ -417,17 +403,17 @@ class Comment(
         'message_tags': 'list<EntityAtTextRange>',
         'object': 'Object',
         'parent': 'Comment',
-        'permalink_url': 'Object',
+        'permalink_url': 'string',
         'private_reply_conversation': 'Object',
         'user_likes': 'bool',
     }
     @classmethod
     def _get_field_enum_info(cls):
         field_enum_info = {}
+        field_enum_info['Order'] = Comment.Order.__dict__.values()
         field_enum_info['CommentPrivacyValue'] = Comment.CommentPrivacyValue.__dict__.values()
         field_enum_info['Filter'] = Comment.Filter.__dict__.values()
         field_enum_info['LiveFilter'] = Comment.LiveFilter.__dict__.values()
-        field_enum_info['Order'] = Comment.Order.__dict__.values()
         return field_enum_info
 
 

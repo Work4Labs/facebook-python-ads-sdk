@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -409,6 +395,7 @@ class AdAccountTargetingUnified(
         excluded_user_adclusters = 'excluded_user_adclusters'
         excluded_user_device = 'excluded_user_device'
         exclusions = 'exclusions'
+        expanded_implicit_custom_audiences = 'expanded_implicit_custom_audiences'
         facebook_positions = 'facebook_positions'
         family_statuses = 'family_statuses'
         fb_deal_id = 'fb_deal_id'
@@ -443,6 +430,8 @@ class AdAccountTargetingUnified(
         location_categories = 'location_categories'
         location_cluster_ids = 'location_cluster_ids'
         location_expansion = 'location_expansion'
+        marketing_message_channels = 'marketing_message_channels'
+        marketing_message_targeting = 'marketing_message_targeting'
         marketplace_product_categories = 'marketplace_product_categories'
         messenger_positions = 'messenger_positions'
         mobile_device_model = 'mobile_device_model'
@@ -463,6 +452,7 @@ class AdAccountTargetingUnified(
         relationship_statuses = 'relationship_statuses'
         rtb_flag = 'rtb_flag'
         site_category = 'site_category'
+        tafe_ca_mitigation_strategy = 'tafe_ca_mitigation_strategy'
         targeting_automation = 'targeting_automation'
         targeting_optimization = 'targeting_optimization'
         targeting_relaxation_types = 'targeting_relaxation_types'
@@ -488,6 +478,7 @@ class AdAccountTargetingUnified(
         apk_pure = 'apk_pure'
         aptoide_a1_store = 'aptoide_a1_store'
         bemobi_mobile_store = 'bemobi_mobile_store'
+        digital_turbine_store = 'digital_turbine_store'
         does_not_exist = 'does_not_exist'
         fb_android_store = 'fb_android_store'
         fb_canvas = 'fb_canvas'

@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -156,7 +142,7 @@ class PublisherBlockList(
             self.assure_call()
             return request.execute()
 
-    def create_app_end_publisher_url(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+    def create_append_publisher_url(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
@@ -191,6 +177,7 @@ class PublisherBlockList(
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.webpublisher import WebPublisher
         param_types = {
             'draft_id': 'string',
         }
@@ -202,9 +189,9 @@ class PublisherBlockList(
             endpoint='/paged_web_publishers',
             api=self._api,
             param_checker=TypeChecker(param_types, enums),
-            target_class=AbstractCrudObject,
+            target_class=WebPublisher,
             api_type='EDGE',
-            response_parser=ObjectParser(target_class=AbstractCrudObject, api=self._api),
+            response_parser=ObjectParser(target_class=WebPublisher, api=self._api),
         )
         request.add_params(params)
         request.add_fields(fields)
@@ -219,7 +206,7 @@ class PublisherBlockList(
             return request.execute()
 
     _field_types = {
-        'app_publishers': 'list<Object>',
+        'app_publishers': 'list<AppPublisher>',
         'business_owner_id': 'string',
         'id': 'string',
         'is_auto_blocking_on': 'bool',
@@ -228,7 +215,7 @@ class PublisherBlockList(
         'last_update_user': 'string',
         'name': 'string',
         'owner_ad_account_id': 'string',
-        'web_publishers': 'list<Object>',
+        'web_publishers': 'list<WebPublisher>',
     }
     @classmethod
     def _get_field_enum_info(cls):

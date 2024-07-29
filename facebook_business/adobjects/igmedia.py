@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -41,8 +27,10 @@ class IGMedia(
         super(IGMedia, self).__init__(fbid, parent_id, api)
 
     class Field(AbstractObject.Field):
+        boost_eligibility_info = 'boost_eligibility_info'
         caption = 'caption'
         comments_count = 'comments_count'
+        copyright_check_information = 'copyright_check_information'
         id = 'id'
         ig_id = 'ig_id'
         is_comment_enabled = 'is_comment_enabled'
@@ -63,6 +51,10 @@ class IGMedia(
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
         param_types = {
+            'primary_fb_page_id': 'string',
+            'primary_ig_user_id': 'string',
+            'secondary_fb_page_id': 'string',
+            'secondary_ig_user_id': 'string',
         }
         enums = {
         }
@@ -119,6 +111,101 @@ class IGMedia(
             self.assure_call()
             return request.execute()
 
+    def get_boost_ads_list(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.igboostmediaad import IGBoostMediaAd
+        param_types = {
+        }
+        enums = {
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='GET',
+            endpoint='/boost_ads_list',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=IGBoostMediaAd,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=IGBoostMediaAd, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
+    def get_branded_content_partner_promote(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.brandedcontentshadowiguserid import BrandedContentShadowIGUserID
+        param_types = {
+        }
+        enums = {
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='GET',
+            endpoint='/branded_content_partner_promote',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=BrandedContentShadowIGUserID,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=BrandedContentShadowIGUserID, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
+    def create_branded_content_partner_promote(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.brandedcontentshadowiguserid import BrandedContentShadowIGUserID
+        param_types = {
+            'permission': 'bool',
+            'sponsor_id': 'unsigned int',
+        }
+        enums = {
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='POST',
+            endpoint='/branded_content_partner_promote',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=BrandedContentShadowIGUserID,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=BrandedContentShadowIGUserID, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
     def get_children(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
@@ -136,6 +223,37 @@ class IGMedia(
             target_class=IGMedia,
             api_type='EDGE',
             response_parser=ObjectParser(target_class=IGMedia, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
+    def get_collaborators(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.shadowigmediacollaborators import ShadowIGMediaCollaborators
+        param_types = {
+        }
+        enums = {
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='GET',
+            endpoint='/collaborators',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=ShadowIGMediaCollaborators,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=ShadowIGMediaCollaborators, api=self._api),
         )
         request.add_params(params)
         request.add_fields(fields)
@@ -349,8 +467,10 @@ class IGMedia(
             return request.execute()
 
     _field_types = {
+        'boost_eligibility_info': 'IGMediaBoostEligibilityInfo',
         'caption': 'string',
         'comments_count': 'int',
+        'copyright_check_information': 'IGVideoCopyrightCheckMatchesInformation',
         'id': 'string',
         'ig_id': 'string',
         'is_comment_enabled': 'bool',

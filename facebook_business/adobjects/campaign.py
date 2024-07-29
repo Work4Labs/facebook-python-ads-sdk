@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -53,6 +39,7 @@ class Campaign(
         budget_rebalance_flag = 'budget_rebalance_flag'
         budget_remaining = 'budget_remaining'
         buying_type = 'buying_type'
+        campaign_group_active_time = 'campaign_group_active_time'
         can_create_brand_lift_study = 'can_create_brand_lift_study'
         can_use_spend_cap = 'can_use_spend_cap'
         configured_status = 'configured_status'
@@ -61,6 +48,7 @@ class Campaign(
         effective_status = 'effective_status'
         has_secondary_skadnetwork_reporting = 'has_secondary_skadnetwork_reporting'
         id = 'id'
+        is_budget_schedule_enabled = 'is_budget_schedule_enabled'
         is_skadnetwork_attribution = 'is_skadnetwork_attribution'
         issues_info = 'issues_info'
         last_budget_toggling_time = 'last_budget_toggling_time'
@@ -91,6 +79,7 @@ class Campaign(
         cost_cap = 'COST_CAP'
         lowest_cost_without_cap = 'LOWEST_COST_WITHOUT_CAP'
         lowest_cost_with_bid_cap = 'LOWEST_COST_WITH_BID_CAP'
+        lowest_cost_with_min_roas = 'LOWEST_COST_WITH_MIN_ROAS'
 
     class ConfiguredStatus:
         active = 'ACTIVE'
@@ -491,7 +480,7 @@ class Campaign(
             'am_call_tags': 'map',
             'date_preset': 'date_preset_enum',
             'from_adtable': 'bool',
-            'time_range': 'Object',
+            'time_range': 'map',
         }
         enums = {
             'date_preset_enum': [
@@ -703,7 +692,7 @@ class Campaign(
         param_types = {
             'date_preset': 'date_preset_enum',
             'effective_status': 'list<string>',
-            'time_range': 'Object',
+            'time_range': 'map',
             'updated_since': 'int',
         }
         enums = {
@@ -740,7 +729,7 @@ class Campaign(
             'date_preset': 'date_preset_enum',
             'effective_status': 'list<effective_status_enum>',
             'is_completed': 'bool',
-            'time_range': 'Object',
+            'time_range': 'map',
         }
         enums = {
             'date_preset_enum': AdSet.DatePreset.__dict__.values(),
@@ -768,6 +757,42 @@ class Campaign(
             self.assure_call()
             return request.execute()
 
+    def create_budget_schedule(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.highdemandperiod import HighDemandPeriod
+        param_types = {
+            'budget_value': 'unsigned int',
+            'budget_value_type': 'budget_value_type_enum',
+            'time_end': 'unsigned int',
+            'time_start': 'unsigned int',
+        }
+        enums = {
+            'budget_value_type_enum': HighDemandPeriod.BudgetValueType.__dict__.values(),
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='POST',
+            endpoint='/budget_schedules',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=HighDemandPeriod,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=HighDemandPeriod, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
     def get_copies(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
@@ -776,7 +801,7 @@ class Campaign(
             'date_preset': 'date_preset_enum',
             'effective_status': 'list<effective_status_enum>',
             'is_completed': 'bool',
-            'time_range': 'Object',
+            'time_range': 'map',
         }
         enums = {
             'date_preset_enum': Campaign.DatePreset.__dict__.values(),
@@ -865,8 +890,8 @@ class Campaign(
             'summary': 'list<string>',
             'summary_action_breakdowns': 'list<summary_action_breakdowns_enum>',
             'time_increment': 'string',
-            'time_range': 'Object',
-            'time_ranges': 'list<Object>',
+            'time_range': 'map',
+            'time_ranges': 'list<map>',
             'use_account_attribution_setting': 'bool',
             'use_unified_attribution_setting': 'bool',
         }
@@ -926,8 +951,8 @@ class Campaign(
             'summary': 'list<string>',
             'summary_action_breakdowns': 'list<summary_action_breakdowns_enum>',
             'time_increment': 'string',
-            'time_range': 'Object',
-            'time_ranges': 'list<Object>',
+            'time_range': 'map',
+            'time_ranges': 'list<map>',
             'use_account_attribution_setting': 'bool',
             'use_unified_attribution_setting': 'bool',
         }
@@ -976,6 +1001,7 @@ class Campaign(
         'budget_rebalance_flag': 'bool',
         'budget_remaining': 'string',
         'buying_type': 'string',
+        'campaign_group_active_time': 'string',
         'can_create_brand_lift_study': 'bool',
         'can_use_spend_cap': 'bool',
         'configured_status': 'ConfiguredStatus',
@@ -984,6 +1010,7 @@ class Campaign(
         'effective_status': 'EffectiveStatus',
         'has_secondary_skadnetwork_reporting': 'bool',
         'id': 'string',
+        'is_budget_schedule_enabled': 'bool',
         'is_skadnetwork_attribution': 'bool',
         'issues_info': 'list<AdCampaignIssuesInfo>',
         'last_budget_toggling_time': 'datetime',

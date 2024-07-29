@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -49,6 +35,7 @@ class AdVideo(
         content_category = 'content_category'
         content_tags = 'content_tags'
         copyright = 'copyright'
+        copyright_check_information = 'copyright_check_information'
         copyright_monitoring_status = 'copyright_monitoring_status'
         created_time = 'created_time'
         custom_labels = 'custom_labels'
@@ -73,6 +60,7 @@ class AdVideo(
         permalink_url = 'permalink_url'
         picture = 'picture'
         place = 'place'
+        post_id = 'post_id'
         post_views = 'post_views'
         premiere_living_room_status = 'premiere_living_room_status'
         privacy = 'privacy'
@@ -85,7 +73,6 @@ class AdVideo(
         universal_video_id = 'universal_video_id'
         updated_time = 'updated_time'
         views = 'views'
-        adaptive_type = 'adaptive_type'
         animated_effect_id = 'animated_effect_id'
         application_id = 'application_id'
         asked_fun_fact_prompt_id = 'asked_fun_fact_prompt_id'
@@ -112,7 +99,6 @@ class AdVideo(
         fun_fact_toastee_id = 'fun_fact_toastee_id'
         guide = 'guide'
         guide_enabled = 'guide_enabled'
-        has_nickname = 'has_nickname'
         holiday_card = 'holiday_card'
         initial_heading = 'initial_heading'
         initial_pitch = 'initial_pitch'
@@ -131,7 +117,6 @@ class AdVideo(
         original_fov = 'original_fov'
         original_projection_type = 'original_projection_type'
         publish_event_id = 'publish_event_id'
-        react_mode_metadata = 'react_mode_metadata'
         referenced_sticker_id = 'referenced_sticker_id'
         replace_video_id = 'replace_video_id'
         slideshow_spec = 'slideshow_spec'
@@ -151,6 +136,9 @@ class AdVideo(
         video_id_original = 'video_id_original'
         video_start_time_ms = 'video_start_time_ms'
         waterfall_id = 'waterfall_id'
+        ad_placements_validation_only = 'ad_placements_validation_only'
+        creative_folder_id = 'creative_folder_id'
+        validation_ad_placements = 'validation_ad_placements'
         filename = 'filename'
         filepath = 'filepath'
 
@@ -174,7 +162,6 @@ class AdVideo(
         audio_comment = 'AUDIO_COMMENT'
         broadcast = 'BROADCAST'
         bulletin_article_audio = 'BULLETIN_ARTICLE_AUDIO'
-        candidate_videos_deleted = 'CANDIDATE_VIDEOS_DELETED'
         canvas = 'CANVAS'
         cfc_video = 'CFC_VIDEO'
         cms_media_manager = 'CMS_MEDIA_MANAGER'
@@ -182,8 +169,10 @@ class AdVideo(
         contained_post_audio_broadcast = 'CONTAINED_POST_AUDIO_BROADCAST'
         contained_post_copyright_reference_broadcast = 'CONTAINED_POST_COPYRIGHT_REFERENCE_BROADCAST'
         copyright_reference_broadcast = 'COPYRIGHT_REFERENCE_BROADCAST'
+        copyright_reference_ig_xpost_video = 'COPYRIGHT_REFERENCE_IG_XPOST_VIDEO'
         copyright_reference_video = 'COPYRIGHT_REFERENCE_VIDEO'
         creation_ml_precreation = 'CREATION_ML_PRECREATION'
+        datagenix_video = 'DATAGENIX_VIDEO'
         dco_ad_asset_feed = 'DCO_AD_ASSET_FEED'
         dco_autogen_video = 'DCO_AUTOGEN_VIDEO'
         dco_trimmed_video = 'DCO_TRIMMED_VIDEO'
@@ -204,6 +193,7 @@ class AdVideo(
         fb_shorts_content_remixable = 'FB_SHORTS_CONTENT_REMIXABLE'
         fb_shorts_cross_meta_post = 'FB_SHORTS_CROSS_META_POST'
         fb_shorts_group_post = 'FB_SHORTS_GROUP_POST'
+        fb_shorts_linked_product = 'FB_SHORTS_LINKED_PRODUCT'
         fb_shorts_pmv_post = 'FB_SHORTS_PMV_POST'
         fb_shorts_pmv_post_no_newsfeed_nor_timeline = 'FB_SHORTS_PMV_POST_NO_NEWSFEED_NOR_TIMELINE'
         fb_shorts_post = 'FB_SHORTS_POST'
@@ -221,7 +211,6 @@ class AdVideo(
         group_post = 'GROUP_POST'
         hack_tv = 'HACK_TV'
         heuristic_cluster_video = 'HEURISTIC_CLUSTER_VIDEO'
-        heuristic_preview = 'HEURISTIC_PREVIEW'
         highlight_clip_video = 'HIGHLIGHT_CLIP_VIDEO'
         huddle_broadcast = 'HUDDLE_BROADCAST'
         ig_reels_xpv = 'IG_REELS_XPV'
@@ -231,13 +220,13 @@ class AdVideo(
         instagram_video_copy = 'INSTAGRAM_VIDEO_COPY'
         instant_application_preview = 'INSTANT_APPLICATION_PREVIEW'
         instant_article = 'INSTANT_ARTICLE'
+        instant_games_promo = 'INSTANT_GAMES_PROMO'
         instant_game_clip = 'INSTANT_GAME_CLIP'
         issue_module = 'ISSUE_MODULE'
         jobs_careers = 'JOBS_CAREERS'
         jobs_visual_intro_entry = 'JOBS_VISUAL_INTRO_ENTRY'
         job_application_video = 'JOB_APPLICATION_VIDEO'
         job_opening_video = 'JOB_OPENING_VIDEO'
-        kototoro = 'KOTOTORO'
         learn = 'LEARN'
         legacy = 'LEGACY'
         legacy_contained_post_broadcast = 'LEGACY_CONTAINED_POST_BROADCAST'
@@ -255,6 +244,7 @@ class AdVideo(
         music_clip_in_audio_digest = 'MUSIC_CLIP_IN_AUDIO_DIGEST'
         music_clip_in_comment = 'MUSIC_CLIP_IN_COMMENT'
         music_clip_in_lightweight_status = 'MUSIC_CLIP_IN_LIGHTWEIGHT_STATUS'
+        music_clip_in_msgr_note = 'MUSIC_CLIP_IN_MSGR_NOTE'
         music_clip_in_poll_option = 'MUSIC_CLIP_IN_POLL_OPTION'
         music_clip_on_dating_profile = 'MUSIC_CLIP_ON_DATING_PROFILE'
         neo_async_game_video = 'NEO_ASYNC_GAME_VIDEO'
@@ -293,6 +283,7 @@ class AdVideo(
         profile_intro_card = 'PROFILE_INTRO_CARD'
         profile_video = 'PROFILE_VIDEO'
         proton = 'PROTON'
+        quick_clip_workplace_post = 'QUICK_CLIP_WORKPLACE_POST'
         quick_promotion = 'QUICK_PROMOTION'
         replace_video = 'REPLACE_VIDEO'
         sales_client_interaction = 'SALES_CLIENT_INTERACTION'
@@ -301,11 +292,9 @@ class AdVideo(
         slideshow_animoto = 'SLIDESHOW_ANIMOTO'
         slideshow_shakr = 'SLIDESHOW_SHAKR'
         slideshow_variation_video = 'SLIDESHOW_VARIATION_VIDEO'
-        sotto_content = 'SOTTO_CONTENT'
         soundbites_video = 'SOUNDBITES_VIDEO'
         sound_platform_stream = 'SOUND_PLATFORM_STREAM'
         srt_attachment = 'SRT_ATTACHMENT'
-        stages_broadcast = 'STAGES_BROADCAST'
         stories_video = 'STORIES_VIDEO'
         stories_wearable = 'STORIES_WEARABLE'
         storyline = 'STORYLINE'
@@ -317,7 +306,6 @@ class AdVideo(
         temporary_unlisted = 'TEMPORARY_UNLISTED'
         temp_multimedia_post = 'TEMP_MULTIMEDIA_POST'
         unlisted = 'UNLISTED'
-        unlisted_hack_tv = 'UNLISTED_HACK_TV'
         unlisted_horizon = 'UNLISTED_HORIZON'
         unlisted_oculus = 'UNLISTED_OCULUS'
         video_comment = 'VIDEO_COMMENT'
@@ -376,6 +364,31 @@ class AdVideo(
         finish = 'finish'
         start = 'start'
         transfer = 'transfer'
+
+    class ValidationAdPlacements:
+        audience_network_instream_video = 'AUDIENCE_NETWORK_INSTREAM_VIDEO'
+        audience_network_instream_video_mobile = 'AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE'
+        audience_network_rewarded_video = 'AUDIENCE_NETWORK_REWARDED_VIDEO'
+        desktop_feed_standard = 'DESKTOP_FEED_STANDARD'
+        facebook_story_mobile = 'FACEBOOK_STORY_MOBILE'
+        facebook_story_sticker_mobile = 'FACEBOOK_STORY_STICKER_MOBILE'
+        instagram_standard = 'INSTAGRAM_STANDARD'
+        instagram_story = 'INSTAGRAM_STORY'
+        instant_article_standard = 'INSTANT_ARTICLE_STANDARD'
+        instream_banner_desktop = 'INSTREAM_BANNER_DESKTOP'
+        instream_banner_mobile = 'INSTREAM_BANNER_MOBILE'
+        instream_video_desktop = 'INSTREAM_VIDEO_DESKTOP'
+        instream_video_image = 'INSTREAM_VIDEO_IMAGE'
+        instream_video_mobile = 'INSTREAM_VIDEO_MOBILE'
+        messenger_mobile_inbox_media = 'MESSENGER_MOBILE_INBOX_MEDIA'
+        messenger_mobile_story_media = 'MESSENGER_MOBILE_STORY_MEDIA'
+        mobile_feed_standard = 'MOBILE_FEED_STANDARD'
+        mobile_fullwidth = 'MOBILE_FULLWIDTH'
+        mobile_interstitial = 'MOBILE_INTERSTITIAL'
+        mobile_medium_rectangle = 'MOBILE_MEDIUM_RECTANGLE'
+        mobile_native = 'MOBILE_NATIVE'
+        right_column_standard = 'RIGHT_COLUMN_STANDARD'
+        suggested_video_mobile = 'SUGGESTED_VIDEO_MOBILE'
 
     class Type:
         tagged = 'tagged'
@@ -731,7 +744,7 @@ class AdVideo(
             self.assure_call()
             return request.execute()
 
-    def get_crosspost_shared_pages(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+    def get_crosspost_share_d_pages(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
@@ -992,6 +1005,7 @@ class AdVideo(
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.taggablesubject import TaggableSubject
         param_types = {
         }
         enums = {
@@ -1002,9 +1016,9 @@ class AdVideo(
             endpoint='/tags',
             api=self._api,
             param_checker=TypeChecker(param_types, enums),
-            target_class=AbstractCrudObject,
+            target_class=TaggableSubject,
             api_type='EDGE',
-            response_parser=ObjectParser(target_class=AbstractCrudObject, api=self._api),
+            response_parser=ObjectParser(target_class=TaggableSubject, api=self._api),
         )
         request.add_params(params)
         request.add_fields(fields)
@@ -1153,12 +1167,13 @@ class AdVideo(
     _field_types = {
         'ad_breaks': 'list<int>',
         'admin_creator': 'User',
-        'audio_isrc': 'Object',
+        'audio_isrc': 'AudioIsrc',
         'backdated_time': 'datetime',
         'backdated_time_granularity': 'string',
         'content_category': 'string',
         'content_tags': 'list<string>',
         'copyright': 'VideoCopyright',
+        'copyright_check_information': 'Object',
         'copyright_monitoring_status': 'string',
         'created_time': 'datetime',
         'custom_labels': 'list<string>',
@@ -1180,9 +1195,10 @@ class AdVideo(
         'live_audience_count': 'unsigned int',
         'live_status': 'string',
         'music_video_copyright': 'MusicVideoCopyright',
-        'permalink_url': 'Object',
+        'permalink_url': 'string',
         'picture': 'string',
         'place': 'Place',
+        'post_id': 'string',
         'post_views': 'unsigned int',
         'premiere_living_room_status': 'string',
         'privacy': 'Privacy',
@@ -1190,12 +1206,11 @@ class AdVideo(
         'scheduled_publish_time': 'datetime',
         'source': 'string',
         'spherical': 'bool',
-        'status': 'Object',
+        'status': 'VideoStatus',
         'title': 'string',
         'universal_video_id': 'string',
         'updated_time': 'datetime',
         'views': 'unsigned int',
-        'adaptive_type': 'string',
         'animated_effect_id': 'unsigned int',
         'application_id': 'string',
         'asked_fun_fact_prompt_id': 'unsigned int',
@@ -1222,7 +1237,6 @@ class AdVideo(
         'fun_fact_toastee_id': 'unsigned int',
         'guide': 'list<list<unsigned int>>',
         'guide_enabled': 'bool',
-        'has_nickname': 'bool',
         'holiday_card': 'string',
         'initial_heading': 'unsigned int',
         'initial_pitch': 'unsigned int',
@@ -1241,7 +1255,6 @@ class AdVideo(
         'original_fov': 'unsigned int',
         'original_projection_type': 'OriginalProjectionType',
         'publish_event_id': 'unsigned int',
-        'react_mode_metadata': 'string',
         'referenced_sticker_id': 'string',
         'replace_video_id': 'string',
         'slideshow_spec': 'map',
@@ -1261,6 +1274,9 @@ class AdVideo(
         'video_id_original': 'string',
         'video_start_time_ms': 'unsigned int',
         'waterfall_id': 'string',
+        'ad_placements_validation_only': 'bool',
+        'creative_folder_id': 'string',
+        'validation_ad_placements': 'list<ValidationAdPlacements>',
         'filename': 'file'
     }
     @classmethod
@@ -1273,6 +1289,7 @@ class AdVideo(
         field_enum_info['SwapMode'] = AdVideo.SwapMode.__dict__.values()
         field_enum_info['UnpublishedContentType'] = AdVideo.UnpublishedContentType.__dict__.values()
         field_enum_info['UploadPhase'] = AdVideo.UploadPhase.__dict__.values()
+        field_enum_info['ValidationAdPlacements'] = AdVideo.ValidationAdPlacements.__dict__.values()
         field_enum_info['Type'] = AdVideo.Type.__dict__.values()
         field_enum_info['VideoState'] = AdVideo.VideoState.__dict__.values()
         field_enum_info['BackdatedTimeGranularity'] = AdVideo.BackdatedTimeGranularity.__dict__.values()

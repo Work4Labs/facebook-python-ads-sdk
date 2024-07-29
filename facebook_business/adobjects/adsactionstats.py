@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 
@@ -39,11 +25,26 @@ class AdsActionStats(
 
     class Field(AbstractObject.Field):
         field_1d_click = '1d_click'
+        field_1d_click_all_conversions = '1d_click_all_conversions'
+        field_1d_click_first_conversion = '1d_click_first_conversion'
+        field_1d_ev = '1d_ev'
+        field_1d_ev_all_conversions = '1d_ev_all_conversions'
+        field_1d_ev_first_conversion = '1d_ev_first_conversion'
         field_1d_view = '1d_view'
+        field_1d_view_all_conversions = '1d_view_all_conversions'
+        field_1d_view_first_conversion = '1d_view_first_conversion'
         field_28d_click = '28d_click'
+        field_28d_click_all_conversions = '28d_click_all_conversions'
+        field_28d_click_first_conversion = '28d_click_first_conversion'
         field_28d_view = '28d_view'
+        field_28d_view_all_conversions = '28d_view_all_conversions'
+        field_28d_view_first_conversion = '28d_view_first_conversion'
         field_7d_click = '7d_click'
+        field_7d_click_all_conversions = '7d_click_all_conversions'
+        field_7d_click_first_conversion = '7d_click_first_conversion'
         field_7d_view = '7d_view'
+        field_7d_view_all_conversions = '7d_view_all_conversions'
+        field_7d_view_first_conversion = '7d_view_first_conversion'
         action_brand = 'action_brand'
         action_canvas_component_id = 'action_canvas_component_id'
         action_canvas_component_name = 'action_canvas_component_name'
@@ -67,16 +68,35 @@ class AdsActionStats(
         interactive_component_sticker_id = 'interactive_component_sticker_id'
         interactive_component_sticker_response = 'interactive_component_sticker_response'
         skan_click = 'skan_click'
+        skan_click_second_postback = 'skan_click_second_postback'
+        skan_click_third_postback = 'skan_click_third_postback'
         skan_view = 'skan_view'
+        skan_view_second_postback = 'skan_view_second_postback'
+        skan_view_third_postback = 'skan_view_third_postback'
         value = 'value'
 
     _field_types = {
         '1d_click': 'string',
+        '1d_click_all_conversions': 'string',
+        '1d_click_first_conversion': 'string',
+        '1d_ev': 'string',
+        '1d_ev_all_conversions': 'string',
+        '1d_ev_first_conversion': 'string',
         '1d_view': 'string',
+        '1d_view_all_conversions': 'string',
+        '1d_view_first_conversion': 'string',
         '28d_click': 'string',
+        '28d_click_all_conversions': 'string',
+        '28d_click_first_conversion': 'string',
         '28d_view': 'string',
+        '28d_view_all_conversions': 'string',
+        '28d_view_first_conversion': 'string',
         '7d_click': 'string',
+        '7d_click_all_conversions': 'string',
+        '7d_click_first_conversion': 'string',
         '7d_view': 'string',
+        '7d_view_all_conversions': 'string',
+        '7d_view_first_conversion': 'string',
         'action_brand': 'string',
         'action_canvas_component_id': 'string',
         'action_canvas_component_name': 'string',
@@ -100,7 +120,11 @@ class AdsActionStats(
         'interactive_component_sticker_id': 'string',
         'interactive_component_sticker_response': 'string',
         'skan_click': 'string',
+        'skan_click_second_postback': 'string',
+        'skan_click_third_postback': 'string',
         'skan_view': 'string',
+        'skan_view_second_postback': 'string',
+        'skan_view_third_postback': 'string',
         'value': 'string',
     }
     @classmethod

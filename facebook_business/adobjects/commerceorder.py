@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -43,6 +29,7 @@ class CommerceOrder(
     class Field(AbstractObject.Field):
         buyer_details = 'buyer_details'
         channel = 'channel'
+        contains_bopis_items = 'contains_bopis_items'
         created = 'created'
         estimated_payment_details = 'estimated_payment_details'
         id = 'id'
@@ -119,7 +106,6 @@ class CommerceOrder(
         param_types = {
             'idempotency_key': 'string',
             'merchant_order_reference': 'string',
-            'return_error_response': 'bool',
         }
         enums = {
         }
@@ -175,7 +161,7 @@ class CommerceOrder(
             self.assure_call()
             return request.execute()
 
-    def create_cancellation(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+    def create_can_cell_a_t_i_on(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
@@ -209,20 +195,20 @@ class CommerceOrder(
             self.assure_call()
             return request.execute()
 
-    def create_fulfill_order(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+    def create_item_update(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
         param_types = {
-            'idempotency_key': 'string',
             'items': 'list<map>',
+            'merchant_order_reference': 'string',
         }
         enums = {
         }
         request = FacebookRequest(
             node_id=self['id'],
             method='POST',
-            endpoint='/fulfill_order',
+            endpoint='/item_updates',
             api=self._api,
             param_checker=TypeChecker(param_types, enums),
             target_class=CommerceOrder,
@@ -331,7 +317,7 @@ class CommerceOrder(
             self.assure_call()
             return request.execute()
 
-    def get_promotions(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+    def get_promo_t_i_ons(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
@@ -396,6 +382,7 @@ class CommerceOrder(
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
         param_types = {
+            'adjustment_amount': 'map',
             'deductions': 'list<map>',
             'idempotency_key': 'string',
             'items': 'list<map>',
@@ -607,9 +594,45 @@ class CommerceOrder(
             self.assure_call()
             return request.execute()
 
+    def create_update(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        param_types = {
+            'cancel_amount': 'map',
+            'fulfill_amount': 'map',
+            'merchant_order_reference': 'string',
+            'refund_amount': 'map',
+            'total_amount': 'map',
+        }
+        enums = {
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='POST',
+            endpoint='/updates',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=CommerceOrder,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=CommerceOrder, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
     _field_types = {
         'buyer_details': 'Object',
         'channel': 'string',
+        'contains_bopis_items': 'bool',
         'created': 'string',
         'estimated_payment_details': 'Object',
         'id': 'string',

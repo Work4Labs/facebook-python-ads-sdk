@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -112,12 +98,6 @@ class Post(
         none = 'none'
         year = 'year'
 
-    class CheckinEntryPoint:
-        branding_checkin = 'BRANDING_CHECKIN'
-        branding_other = 'BRANDING_OTHER'
-        branding_photo = 'BRANDING_PHOTO'
-        branding_status = 'BRANDING_STATUS'
-
     class Formatting:
         markdown = 'MARKDOWN'
         plaintext = 'PLAINTEXT'
@@ -194,6 +174,8 @@ class Post(
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
         param_types = {
+            'primary_fb_page_id': 'string',
+            'primary_ig_user_id': 'string',
         }
         enums = {
         }
@@ -283,7 +265,7 @@ class Post(
             self.assure_call()
             return request.execute()
 
-    def get_attachments(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+    def get_attach_m_ents(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
@@ -564,7 +546,7 @@ class Post(
             self.assure_call()
             return request.execute()
 
-    def get_shared_posts(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+    def get_share_d_posts(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
           api_utils.warning('`success` and `failure` callback only work for batch call.')
@@ -689,7 +671,7 @@ class Post(
         'is_popular': 'bool',
         'is_published': 'bool',
         'is_spherical': 'bool',
-        'link': 'Object',
+        'link': 'string',
         'message': 'string',
         'message_tags': 'list',
         'multi_share_end_card': 'bool',
@@ -697,7 +679,7 @@ class Post(
         'name': 'string',
         'object_id': 'string',
         'parent_id': 'string',
-        'permalink_url': 'Object',
+        'permalink_url': 'string',
         'picture': 'string',
         'place': 'Place',
         'privacy': 'Privacy',
@@ -724,7 +706,6 @@ class Post(
     def _get_field_enum_info(cls):
         field_enum_info = {}
         field_enum_info['BackdatedTimeGranularity'] = Post.BackdatedTimeGranularity.__dict__.values()
-        field_enum_info['CheckinEntryPoint'] = Post.CheckinEntryPoint.__dict__.values()
         field_enum_info['Formatting'] = Post.Formatting.__dict__.values()
         field_enum_info['PlaceAttachmentSetting'] = Post.PlaceAttachmentSetting.__dict__.values()
         field_enum_info['PostSurfacesBlacklist'] = Post.PostSurfacesBlacklist.__dict__.values()
