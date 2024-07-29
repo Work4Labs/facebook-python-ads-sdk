@@ -3,26 +3,25 @@
 version: 2
 
 shared: &shared
-    steps:
-      - checkout
-      # Define config in CircleCi's project settings → Environment Variables
-      - run: echo \{\"app_id\":\"$FB_APP_ID\",\"app_secret\":\"$FB_APP_SECRET\",\"act_id\":\"act_$FB_ACCOUNT_ID\",\"page_id\":\"$FB_PAGE_ID\",\"access_token\":\"$FB_ACCESS_TOKEN\",\"business\":\"$FB_BUSINESS_ID\",\"sec_business\":\"$FB_BUSINESS_ID_BIS\",\"sec_act_id\":\"act_$FB_ACCOUNT_ID_BIS\"\} > config.json
-      # Cheapo virtualenv, CCi images use the circleci user so no writing to the root site-packages
-      - run: virtualenv venv
-      - run: venv/bin/python setup.py install
-      - run: venv/bin/python -m facebook_business.test.unit
+  steps:
+    - checkout
+    # Define config in CircleCi's project settings → Environment Variables
+    - run: echo \{\"app_id\":\"$FB_APP_ID\",\"app_secret\":\"$FB_APP_SECRET\",\"act_id\":\"act_$FB_ACCOUNT_ID\",\"page_id\":\"$FB_PAGE_ID\",\"access_token\":\"$FB_ACCESS_TOKEN\",\"business\":\"$FB_BUSINESS_ID\",\"sec_business\":\"$FB_BUSINESS_ID_BIS\",\"sec_act_id\":\"act_$FB_ACCOUNT_ID_BIS\"\} > config.json
+    # Cheapo virtualenv, CCi images use the circleci user so no writing to the root site-packages
+    - run: pip install --no-cache-dir virtualenv && virtualenv venv3
+    - run: virtualenv venv
+    - run: venv/bin/python setup.py install
+    - run: venv/bin/python -m facebook_business.test.unit
 
 jobs:
-  python-3.7:  # Not specified in tox.ini
+  python-3.10: # Not specified in tox.ini
     <<: *shared
     docker:
-      - image: circleci/python:3.7-stretch-node
-
-
+      - image: python:3.7-buster
 
 all_jobs: &all_jobs
-    jobs:
-      - python-3.7
+  jobs:
+    - python-3.10
 
 workflows:
   version: 2

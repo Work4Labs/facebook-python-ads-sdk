@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -58,6 +44,7 @@ class AdSet(
         billing_event = 'billing_event'
         budget_remaining = 'budget_remaining'
         campaign = 'campaign'
+        campaign_active_time = 'campaign_active_time'
         campaign_attribution = 'campaign_attribution'
         campaign_id = 'campaign_id'
         configured_status = 'configured_status'
@@ -76,6 +63,7 @@ class AdSet(
         full_funnel_exploration_mode = 'full_funnel_exploration_mode'
         id = 'id'
         instagram_actor_id = 'instagram_actor_id'
+        is_budget_schedule_enabled = 'is_budget_schedule_enabled'
         is_dynamic_creative = 'is_dynamic_creative'
         issues_info = 'issues_info'
         learning_stage_info = 'learning_stage_info'
@@ -91,6 +79,8 @@ class AdSet(
         promoted_object = 'promoted_object'
         recommendations = 'recommendations'
         recurring_budget_semantics = 'recurring_budget_semantics'
+        regional_regulated_categories = 'regional_regulated_categories'
+        regional_regulation_identities = 'regional_regulation_identities'
         review_feedback = 'review_feedback'
         rf_prediction_id = 'rf_prediction_id'
         source_adset = 'source_adset'
@@ -118,6 +108,7 @@ class AdSet(
         cost_cap = 'COST_CAP'
         lowest_cost_without_cap = 'LOWEST_COST_WITHOUT_CAP'
         lowest_cost_with_bid_cap = 'LOWEST_COST_WITH_BID_CAP'
+        lowest_cost_with_min_roas = 'LOWEST_COST_WITH_MIN_ROAS'
 
     class BillingEvent:
         app_installs = 'APP_INSTALLS'
@@ -160,15 +151,18 @@ class AdSet(
         landing_page_views = 'LANDING_PAGE_VIEWS'
         lead_generation = 'LEAD_GENERATION'
         link_clicks = 'LINK_CLICKS'
+        meaningful_call_attempt = 'MEANINGFUL_CALL_ATTEMPT'
         messaging_appointment_conversion = 'MESSAGING_APPOINTMENT_CONVERSION'
         messaging_purchase_conversion = 'MESSAGING_PURCHASE_CONVERSION'
         none = 'NONE'
         offsite_conversions = 'OFFSITE_CONVERSIONS'
         page_likes = 'PAGE_LIKES'
         post_engagement = 'POST_ENGAGEMENT'
+        profile_visit = 'PROFILE_VISIT'
         quality_call = 'QUALITY_CALL'
         quality_lead = 'QUALITY_LEAD'
         reach = 'REACH'
+        reminders_set = 'REMINDERS_SET'
         subscribers = 'SUBSCRIBERS'
         thruplay = 'THRUPLAY'
         value = 'VALUE'
@@ -181,34 +175,46 @@ class AdSet(
         paused = 'PAUSED'
 
     class DatePreset:
-        data_maximum = 'data_maximum'
-        last_14d = 'last_14d'
-        last_28d = 'last_28d'
-        last_30d = 'last_30d'
-        last_3d = 'last_3d'
-        last_7d = 'last_7d'
-        last_90d = 'last_90d'
-        last_month = 'last_month'
-        last_quarter = 'last_quarter'
-        last_week_mon_sun = 'last_week_mon_sun'
-        last_week_sun_sat = 'last_week_sun_sat'
-        last_year = 'last_year'
-        maximum = 'maximum'
-        this_month = 'this_month'
-        this_quarter = 'this_quarter'
-        this_week_mon_today = 'this_week_mon_today'
-        this_week_sun_today = 'this_week_sun_today'
-        this_year = 'this_year'
-        today = 'today'
-        yesterday = 'yesterday'
+        data_maximum = 'DATA_MAXIMUM'
+        last_14d = 'LAST_14D'
+        last_28d = 'LAST_28D'
+        last_30d = 'LAST_30D'
+        last_3d = 'LAST_3D'
+        last_7d = 'LAST_7D'
+        last_90d = 'LAST_90D'
+        last_month = 'LAST_MONTH'
+        last_quarter = 'LAST_QUARTER'
+        last_week_mon_sun = 'LAST_WEEK_MON_SUN'
+        last_week_sun_sat = 'LAST_WEEK_SUN_SAT'
+        last_year = 'LAST_YEAR'
+        maximum = 'MAXIMUM'
+        this_month = 'THIS_MONTH'
+        this_quarter = 'THIS_QUARTER'
+        this_week_mon_today = 'THIS_WEEK_MON_TODAY'
+        this_week_sun_today = 'THIS_WEEK_SUN_TODAY'
+        this_year = 'THIS_YEAR'
+        today = 'TODAY'
+        yesterday = 'YESTERDAY'
 
     class DestinationType:
         app = 'APP'
         applinks_automatic = 'APPLINKS_AUTOMATIC'
         facebook = 'FACEBOOK'
+        instagram_direct = 'INSTAGRAM_DIRECT'
+        instagram_profile = 'INSTAGRAM_PROFILE'
+        messaging_instagram_direct_messenger = 'MESSAGING_INSTAGRAM_DIRECT_MESSENGER'
+        messaging_instagram_direct_messenger_whatsapp = 'MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP'
+        messaging_instagram_direct_whatsapp = 'MESSAGING_INSTAGRAM_DIRECT_WHATSAPP'
+        messaging_messenger_whatsapp = 'MESSAGING_MESSENGER_WHATSAPP'
         messenger = 'MESSENGER'
-        undefined = 'UNDEFINED'
+        on_ad = 'ON_AD'
+        on_event = 'ON_EVENT'
+        on_page = 'ON_PAGE'
+        on_post = 'ON_POST'
+        on_video = 'ON_VIDEO'
+        shop_automatic = 'SHOP_AUTOMATIC'
         website = 'WEBSITE'
+        whatsapp = 'WHATSAPP'
 
     class ExecutionOptions:
         include_recommendations = 'include_recommendations'
@@ -236,6 +242,10 @@ class AdSet(
         travel_intent_no_destination_intent = 'TRAVEL_INTENT_NO_DESTINATION_INTENT'
         trip_consideration = 'TRIP_CONSIDERATION'
         video_sound_on = 'VIDEO_SOUND_ON'
+
+    class RegionalRegulatedCategories:
+        value_0 = '0'
+        value_1 = '1'
 
     class TuneForCategory:
         credit = 'CREDIT'
@@ -302,7 +312,7 @@ class AdSet(
             'am_call_tags': 'map',
             'date_preset': 'date_preset_enum',
             'from_adtable': 'bool',
-            'time_range': 'Object',
+            'time_range': 'map',
         }
         enums = {
             'date_preset_enum': [
@@ -364,6 +374,7 @@ class AdSet(
             'bid_constraints': 'map<string, Object>',
             'bid_strategy': 'bid_strategy_enum',
             'billing_event': 'billing_event_enum',
+            'campaign_attribution': 'Object',
             'campaign_spec': 'Object',
             'creative_sequence': 'list<string>',
             'daily_budget': 'unsigned int',
@@ -389,6 +400,8 @@ class AdSet(
             'pacing_type': 'list<string>',
             'promoted_object': 'Object',
             'rb_prediction_id': 'string',
+            'regional_regulated_categories': 'list<regional_regulated_categories_enum>',
+            'regional_regulation_identities': 'map',
             'rf_prediction_id': 'string',
             'start_time': 'datetime',
             'status': 'status_enum',
@@ -408,6 +421,7 @@ class AdSet(
             'multi_optimization_goal_weight_enum': AdSet.MultiOptimizationGoalWeight.__dict__.values(),
             'optimization_goal_enum': AdSet.OptimizationGoal.__dict__.values(),
             'optimization_sub_event_enum': AdSet.OptimizationSubEvent.__dict__.values(),
+            'regional_regulated_categories_enum': AdSet.RegionalRegulatedCategories.__dict__.values(),
             'status_enum': AdSet.Status.__dict__.values(),
             'tune_for_category_enum': AdSet.TuneForCategory.__dict__.values(),
         }
@@ -640,7 +654,7 @@ class AdSet(
         param_types = {
             'date_preset': 'date_preset_enum',
             'effective_status': 'list<string>',
-            'time_range': 'Object',
+            'time_range': 'map',
             'updated_since': 'int',
         }
         enums = {
@@ -701,6 +715,42 @@ class AdSet(
             self.assure_call()
             return request.execute()
 
+    def create_budget_schedule(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
+        from facebook_business.utils import api_utils
+        if batch is None and (success is not None or failure is not None):
+          api_utils.warning('`success` and `failure` callback only work for batch call.')
+        from facebook_business.adobjects.highdemandperiod import HighDemandPeriod
+        param_types = {
+            'budget_value': 'unsigned int',
+            'budget_value_type': 'budget_value_type_enum',
+            'time_end': 'unsigned int',
+            'time_start': 'unsigned int',
+        }
+        enums = {
+            'budget_value_type_enum': HighDemandPeriod.BudgetValueType.__dict__.values(),
+        }
+        request = FacebookRequest(
+            node_id=self['id'],
+            method='POST',
+            endpoint='/budget_schedules',
+            api=self._api,
+            param_checker=TypeChecker(param_types, enums),
+            target_class=HighDemandPeriod,
+            api_type='EDGE',
+            response_parser=ObjectParser(target_class=HighDemandPeriod, api=self._api),
+        )
+        request.add_params(params)
+        request.add_fields(fields)
+
+        if batch is not None:
+            request.add_to_batch(batch, success=success, failure=failure)
+            return request
+        elif pending:
+            return request
+        else:
+            self.assure_call()
+            return request.execute()
+
     def get_copies(self, fields=None, params=None, batch=None, success=None, failure=None, pending=False):
         from facebook_business.utils import api_utils
         if batch is None and (success is not None or failure is not None):
@@ -709,7 +759,7 @@ class AdSet(
             'date_preset': 'date_preset_enum',
             'effective_status': 'list<effective_status_enum>',
             'is_completed': 'bool',
-            'time_range': 'Object',
+            'time_range': 'map',
         }
         enums = {
             'date_preset_enum': AdSet.DatePreset.__dict__.values(),
@@ -835,8 +885,8 @@ class AdSet(
             'summary': 'list<string>',
             'summary_action_breakdowns': 'list<summary_action_breakdowns_enum>',
             'time_increment': 'string',
-            'time_range': 'Object',
-            'time_ranges': 'list<Object>',
+            'time_range': 'map',
+            'time_ranges': 'list<map>',
             'use_account_attribution_setting': 'bool',
             'use_unified_attribution_setting': 'bool',
         }
@@ -896,8 +946,8 @@ class AdSet(
             'summary': 'list<string>',
             'summary_action_breakdowns': 'list<summary_action_breakdowns_enum>',
             'time_increment': 'string',
-            'time_range': 'Object',
-            'time_ranges': 'list<Object>',
+            'time_range': 'map',
+            'time_ranges': 'list<map>',
             'use_account_attribution_setting': 'bool',
             'use_unified_attribution_setting': 'bool',
         }
@@ -982,6 +1032,7 @@ class AdSet(
         'billing_event': 'BillingEvent',
         'budget_remaining': 'string',
         'campaign': 'Campaign',
+        'campaign_active_time': 'string',
         'campaign_attribution': 'string',
         'campaign_id': 'string',
         'configured_status': 'ConfiguredStatus',
@@ -1000,6 +1051,7 @@ class AdSet(
         'full_funnel_exploration_mode': 'string',
         'id': 'string',
         'instagram_actor_id': 'string',
+        'is_budget_schedule_enabled': 'bool',
         'is_dynamic_creative': 'bool',
         'issues_info': 'list<AdCampaignIssuesInfo>',
         'learning_stage_info': 'AdCampaignLearningStageInfo',
@@ -1015,6 +1067,8 @@ class AdSet(
         'promoted_object': 'AdPromotedObject',
         'recommendations': 'list<AdRecommendation>',
         'recurring_budget_semantics': 'bool',
+        'regional_regulated_categories': 'list<string>',
+        'regional_regulation_identities': 'RegionalRegulationIdentities',
         'review_feedback': 'string',
         'rf_prediction_id': 'string',
         'source_adset': 'AdSet',
@@ -1053,6 +1107,7 @@ class AdSet(
         field_enum_info['FullFunnelExplorationMode'] = AdSet.FullFunnelExplorationMode.__dict__.values()
         field_enum_info['MultiOptimizationGoalWeight'] = AdSet.MultiOptimizationGoalWeight.__dict__.values()
         field_enum_info['OptimizationSubEvent'] = AdSet.OptimizationSubEvent.__dict__.values()
+        field_enum_info['RegionalRegulatedCategories'] = AdSet.RegionalRegulatedCategories.__dict__.values()
         field_enum_info['TuneForCategory'] = AdSet.TuneForCategory.__dict__.values()
         field_enum_info['Operator'] = AdSet.Operator.__dict__.values()
         field_enum_info['StatusOption'] = AdSet.StatusOption.__dict__.values()

@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -60,6 +46,7 @@ class CustomConversion(
         pixel = 'pixel'
         retention_days = 'retention_days'
         rule = 'rule'
+        action_source_type = 'action_source_type'
         advanced_rule = 'advanced_rule'
         event_source_id = 'event_source_id'
         custom_conversion_id = 'custom_conversion_id'
@@ -85,6 +72,17 @@ class CustomConversion(
         start_trial = 'START_TRIAL'
         submit_application = 'SUBMIT_APPLICATION'
         subscribe = 'SUBSCRIBE'
+
+    class ActionSourceType:
+        app = 'app'
+        business_messaging = 'business_messaging'
+        chat = 'chat'
+        email = 'email'
+        other = 'other'
+        phone_call = 'phone_call'
+        physical_store = 'physical_store'
+        system_generated = 'system_generated'
+        website = 'website'
 
     # @deprecated get_endpoint function is deprecated
     @classmethod
@@ -244,6 +242,7 @@ class CustomConversion(
         'pixel': 'AdsPixel',
         'retention_days': 'unsigned int',
         'rule': 'string',
+        'action_source_type': 'ActionSourceType',
         'advanced_rule': 'string',
         'event_source_id': 'string',
         'custom_conversion_id': 'string',
@@ -252,6 +251,7 @@ class CustomConversion(
     def _get_field_enum_info(cls):
         field_enum_info = {}
         field_enum_info['CustomEventType'] = CustomConversion.CustomEventType.__dict__.values()
+        field_enum_info['ActionSourceType'] = CustomConversion.ActionSourceType.__dict__.values()
         return field_enum_info
 
 

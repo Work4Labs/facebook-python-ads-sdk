@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 from facebook_business.adobjects.abstractcrudobject import AbstractCrudObject
@@ -58,6 +44,8 @@ class AdCreative(
         categorization_criteria = 'categorization_criteria'
         category_media_source = 'category_media_source'
         collaborative_ads_lsb_image_bank_id = 'collaborative_ads_lsb_image_bank_id'
+        contextual_multi_ads = 'contextual_multi_ads'
+        creative_sourcing_spec = 'creative_sourcing_spec'
         degrees_of_freedom_spec = 'degrees_of_freedom_spec'
         destination_set_id = 'destination_set_id'
         dynamic_ad_voice = 'dynamic_ad_voice'
@@ -82,7 +70,6 @@ class AdCreative(
         link_destination_display_url = 'link_destination_display_url'
         link_og_id = 'link_og_id'
         link_url = 'link_url'
-        messenger_sponsored_message = 'messenger_sponsored_message'
         name = 'name'
         object_id = 'object_id'
         object_store_url = 'object_store_url'
@@ -91,6 +78,8 @@ class AdCreative(
         object_type = 'object_type'
         object_url = 'object_url'
         omnichannel_link_spec = 'omnichannel_link_spec'
+        page_welcome_message = 'page_welcome_message'
+        photo_album_source_object_story_id = 'photo_album_source_object_story_id'
         place_page_set_id = 'place_page_set_id'
         platform_customizations = 'platform_customizations'
         playable_asset_id = 'playable_asset_id'
@@ -114,14 +103,21 @@ class AdCreative(
     class CallToActionType:
         add_to_cart = 'ADD_TO_CART'
         apply_now = 'APPLY_NOW'
+        ask_about_services = 'ASK_ABOUT_SERVICES'
+        ask_for_more_info = 'ASK_FOR_MORE_INFO'
         audio_call = 'AUDIO_CALL'
+        book_a_consultation = 'BOOK_A_CONSULTATION'
+        book_now = 'BOOK_NOW'
         book_travel = 'BOOK_TRAVEL'
         buy = 'BUY'
         buy_now = 'BUY_NOW'
         buy_tickets = 'BUY_TICKETS'
+        buy_via_message = 'BUY_VIA_MESSAGE'
         call = 'CALL'
         call_me = 'CALL_ME'
         call_now = 'CALL_NOW'
+        chat_with_us = 'CHAT_WITH_US'
+        confirm = 'CONFIRM'
         contact = 'CONTACT'
         contact_us = 'CONTACT_US'
         donate = 'DONATE'
@@ -133,6 +129,7 @@ class AdCreative(
         follow_news_storyline = 'FOLLOW_NEWS_STORYLINE'
         follow_page = 'FOLLOW_PAGE'
         follow_user = 'FOLLOW_USER'
+        get_a_quote = 'GET_A_QUOTE'
         get_directions = 'GET_DIRECTIONS'
         get_offer = 'GET_OFFER'
         get_offer_view = 'GET_OFFER_VIEW'
@@ -143,13 +140,14 @@ class AdCreative(
         inquire_now = 'INQUIRE_NOW'
         install_app = 'INSTALL_APP'
         install_mobile_app = 'INSTALL_MOBILE_APP'
+        join_channel = 'JOIN_CHANNEL'
         learn_more = 'LEARN_MORE'
         like_page = 'LIKE_PAGE'
         listen_music = 'LISTEN_MUSIC'
         listen_now = 'LISTEN_NOW'
+        make_an_appointment = 'MAKE_AN_APPOINTMENT'
         message_page = 'MESSAGE_PAGE'
         mobile_download = 'MOBILE_DOWNLOAD'
-        moments = 'MOMENTS'
         no_button = 'NO_BUTTON'
         open_instant_app = 'OPEN_INSTANT_APP'
         open_link = 'OPEN_LINK'
@@ -181,6 +179,7 @@ class AdCreative(
         use_mobile_app = 'USE_MOBILE_APP'
         video_annotation = 'VIDEO_ANNOTATION'
         video_call = 'VIDEO_CALL'
+        view_product = 'VIEW_PRODUCT'
         visit_pages_feed = 'VISIT_PAGES_FEED'
         watch_more = 'WATCH_MORE'
         watch_video = 'WATCH_VIDEO'
@@ -217,6 +216,7 @@ class AdCreative(
     class AuthorizationCategory:
         none = 'NONE'
         political = 'POLITICAL'
+        political_with_digitally_created_media = 'POLITICAL_WITH_DIGITALLY_CREATED_MEDIA'
 
     class CategorizationCriteria:
         brand = 'brand'
@@ -475,6 +475,8 @@ class AdCreative(
         'categorization_criteria': 'string',
         'category_media_source': 'string',
         'collaborative_ads_lsb_image_bank_id': 'string',
+        'contextual_multi_ads': 'AdCreativeContextualMultiAds',
+        'creative_sourcing_spec': 'AdCreativeSourcingSpec',
         'degrees_of_freedom_spec': 'AdCreativeDegreesOfFreedomSpec',
         'destination_set_id': 'string',
         'dynamic_ad_voice': 'string',
@@ -499,7 +501,6 @@ class AdCreative(
         'link_destination_display_url': 'string',
         'link_og_id': 'string',
         'link_url': 'string',
-        'messenger_sponsored_message': 'string',
         'name': 'string',
         'object_id': 'string',
         'object_store_url': 'string',
@@ -508,6 +509,8 @@ class AdCreative(
         'object_type': 'ObjectType',
         'object_url': 'string',
         'omnichannel_link_spec': 'AdCreativeOmnichannelLinkSpec',
+        'page_welcome_message': 'string',
+        'photo_album_source_object_story_id': 'string',
         'place_page_set_id': 'string',
         'platform_customizations': 'AdCreativePlatformCustomization',
         'playable_asset_id': 'string',

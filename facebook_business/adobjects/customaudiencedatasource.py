@@ -1,22 +1,8 @@
-# Copyright 2014 Facebook, Inc.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to
-# use, copy, modify, and distribute this software in source code or binary
-# form for use in connection with the web services and APIs provided by
-# Facebook.
-
-# As with any software that integrates with the Facebook platform, your use
-# of this software is subject to the Facebook Developer Principles and
-# Policies [http://developers.facebook.com/policy/]. This copyright notice
-# shall be included in all copies or substantial portions of the software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 from facebook_business.adobjects.abstractobject import AbstractObject
 
@@ -43,6 +29,7 @@ class CustomAudienceDataSource(
         type = 'type'
 
     class SubType:
+        ad_campaign = 'AD_CAMPAIGN'
         anything = 'ANYTHING'
         app_users = 'APP_USERS'
         ar_effects_events = 'AR_EFFECTS_EVENTS'
@@ -64,6 +51,7 @@ class CustomAudienceDataSource(
         facebook_wifi_events = 'FACEBOOK_WIFI_EVENTS'
         fb_event_signals = 'FB_EVENT_SIGNALS'
         fb_pixel_hits = 'FB_PIXEL_HITS'
+        group_events = 'GROUP_EVENTS'
         hashes = 'HASHES'
         hashes_or_user_ids = 'HASHES_OR_USER_IDS'
         household_expansion = 'HOUSEHOLD_EXPANSION'
@@ -72,6 +60,8 @@ class CustomAudienceDataSource(
         instant_article_events = 'INSTANT_ARTICLE_EVENTS'
         lookalike_platform = 'LOOKALIKE_PLATFORM'
         mail_chimp_email_hashes = 'MAIL_CHIMP_EMAIL_HASHES'
+        marketplace_listings = 'MARKETPLACE_LISTINGS'
+        messenger_onsite_subscription = 'MESSENGER_ONSITE_SUBSCRIPTION'
         mobile_advertiser_ids = 'MOBILE_ADVERTISER_IDS'
         mobile_app_combination_events = 'MOBILE_APP_COMBINATION_EVENTS'
         mobile_app_custom_audience_users = 'MOBILE_APP_CUSTOM_AUDIENCE_USERS'
@@ -101,6 +91,7 @@ class CustomAudienceDataSource(
         web_pixel_combination_events = 'WEB_PIXEL_COMBINATION_EVENTS'
         web_pixel_hits = 'WEB_PIXEL_HITS'
         web_pixel_hits_custom_audience_users = 'WEB_PIXEL_HITS_CUSTOM_AUDIENCE_USERS'
+        whatsapp_subscriber_pool = 'WHATSAPP_SUBSCRIBER_POOL'
 
     class Type:
         contact_importer = 'CONTACT_IMPORTER'
